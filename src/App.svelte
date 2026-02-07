@@ -29,6 +29,11 @@
   function deleteTodo(id: number) {
     todos = todos.filter((t) => t.id !== id);
   }
+
+  /** 完了した TODO アイテムを削除する*/
+  function clearCompleted() {
+    todos = todos.filter((t) => !t.completed);
+  }
 </script>
 
 <main>
@@ -39,7 +44,11 @@
       <Item bind:todo={filteredTodos[i]} onDelete={deleteTodo} />
     {/each}
   </div>
-  <Footer remaining={todos.filter((t) => !t.completed).length} bind:filter />
+  <Footer
+    remaining={todos.filter((t) => !t.completed).length}
+    bind:filter
+    {clearCompleted}
+  />
 </main>
 
 <style>
