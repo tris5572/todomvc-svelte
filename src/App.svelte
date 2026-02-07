@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Add from "./lib/Add.svelte";
   import Item from "./lib/Item.svelte";
   import type { Todo } from "./lib/types";
 
@@ -7,6 +8,11 @@
     { id: 2, title: "サンプルtodo", completed: true },
   ]);
 
+  /** TODO アイテムを追加する */
+  function addTodo(todo: Todo) {
+    todos.push(todo);
+  }
+
   /** 指定した ID の TODO アイテムを削除する */
   function deleteTodo(id: number) {
     todos = todos.filter((t) => t.id !== id);
@@ -14,6 +20,7 @@
 </script>
 
 <main>
+  <Add onAdd={addTodo} />
   <div>
     <!-- `#each todos as todo` だと、todo が一時的な参照になって更新できないためインデックスアクセスする -->
     {#each todos as _, i}
