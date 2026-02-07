@@ -1,5 +1,6 @@
 <script lang="ts">
   import Add from "./lib/Add.svelte";
+  import Footer from "./lib/Footer.svelte";
   import Item from "./lib/Item.svelte";
   import type { Todo } from "./lib/types";
 
@@ -27,6 +28,7 @@
       <Item bind:todo={todos[i]} onDelete={deleteTodo} />
     {/each}
   </div>
+  <Footer remaining={todos.filter((t) => !t.completed).length} />
 </main>
 
 <style>
