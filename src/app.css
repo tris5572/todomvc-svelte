@@ -1,8 +1,38 @@
 :root {
-  background: oklch(95% 0.001 190);
-  color: oklch(30% 0.002 190);
   font-family: sans-serif;
+
+  --brand: oklch(70% 0.1 210);
+  --brand-dark: oklch(60% 0.06 210);
+  --brand-x-dark: oklch(50% 0.06 210);
+  --brand-black: oklch(45% 0.1 210);
+  --brand-light: oklch(80% 0.06 210);
+  --brand-x-light: oklch(94% 0.02 210);
+  --white: oklch(98% 0.001 210);
+  --light-grey: oklch(92% 0.01 210);
+
+  background: oklch(95% 0.001 210);
+  color: var(--brand-black);
+}
+
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+input {
+  color: var(--brand-black);
+}
+
+button {
+  background: linear-gradient(var(--white) 80%, var(--brand-x-light));
+  color: var(--brand-dark);
+  padding: 4px 6px;
+  border: 1.5px solid var(--brand-light);
+  border-radius: 8px;
+  cursor: pointer;
+
+  &:hover {
+    background: var(--brand-x-light);
+  }
 }

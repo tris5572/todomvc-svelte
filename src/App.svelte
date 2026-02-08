@@ -44,8 +44,9 @@
 </script>
 
 <main>
+  <h1>TodoMVC Svelte</h1>
   <Add onAdd={addTodo} />
-  <div>
+  <div class="items">
     <!-- #each で回した要素を直接使用すると、各アイテムが一時的な参照になって bind で更新できないためインデックスアクセスする -->
     {#each filteredTodos as _, i}
       <Item
@@ -63,4 +64,20 @@
 </main>
 
 <style>
+  main {
+    width: 40rem;
+    margin: 0 auto;
+  }
+
+  h1 {
+    padding: 0.6rem 0;
+    color: var(--brand);
+    text-align: center;
+  }
+
+  .items {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
 </style>

@@ -18,6 +18,22 @@
   };
 </script>
 
-<div>
+<div class="container">
   <input type="text" placeholder="何する？" onkeydown={handleKeyDown} />
 </div>
+
+<style>
+  .container {
+    max-width: 100%;
+    padding-bottom: 1rem;
+  }
+
+  input {
+    width: 80rem;
+    max-width: 100%;
+    font-size: 1rem;
+    padding: 12px;
+    border: 2px solid var(--brand-x-light);
+    border-radius: 4px;
+  }
+</style>
