@@ -2,15 +2,19 @@
   import Add from "./lib/Add.svelte";
   import Footer from "./lib/Footer.svelte";
   import Item from "./lib/Item.svelte";
-  import type { Filter, Todo } from "./lib/types";
+  import {
+    addTodo,
+    clearCompleted,
+    deleteTodo,
+    editTodoTitle,
+    getTodos,
+  } from "./lib/todos.svelte";
+  import type { Filter } from "./lib/types";
 
-  let todos = $state<Todo[]>([
-    { id: 1, title: "Example Todo Item", completed: false },
-    { id: 2, title: "サンプルtodo", completed: true },
-  ]);
   let filter = $state<Filter>("all");
 
   let filteredTodos = $derived.by(() => {
+    const todos = getTodos();
     if (filter === "active") {
       return todos.filter((t) => !t.completed);
     }
@@ -19,28 +23,6 @@
     }
     return todos;
   });
-
-  /** TODO アイテムを追加する */
-  function addTodo(todo: Todo) {
-    todos.push(todo);
-  }
-
-  /** TODO アイテムのタイトルを編集する */
-  function editTodoTitle(id: number, title: string) {
-    todos = todos.map((t) =>
-      t.id === id ? { id, title, completed: t.completed } : t,
-    );
-  }
-
-  /** 指定した ID の TODO アイテムを削除する */
-  function deleteTodo(id: number) {
-    todos = todos.filter((t) => t.id !== id);
-  }
-
-  /** 完了した TODO アイテムを削除する*/
-  function clearCompleted() {
-    todos = todos.filter((t) => !t.completed);
-  }
 </script>
 
 <main>
@@ -57,7 +39,7 @@
     {/each}
   </div>
   <Footer
-    remaining={todos.filter((t) => !t.completed).length}
+    remaining={getTodos().filter((t) => !t.completed).length}
     bind:filter
     {clearCompleted}
   />
