@@ -4,6 +4,7 @@ import { svelte } from "@sveltejs/vite-plugin-svelte";
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: "/todomvc-svelte/",
   plugins: [svelte()],
   resolve: process.env.VITEST
     ? {
