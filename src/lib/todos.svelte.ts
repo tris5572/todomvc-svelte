@@ -1,9 +1,6 @@
 import type { Todo } from "./types";
 
-let todos = $state<Todo[]>([
-  { id: 1, title: "Example Todo Item", completed: false },
-  { id: 2, title: "サンプルtodo", completed: true },
-]);
+let todos = $state<Todo[]>([]);
 
 /** TODO のリストを取得する */
 export function getTodos() {
@@ -30,4 +27,9 @@ export function deleteTodo(id: number) {
 /** 完了した TODO アイテムを削除する*/
 export function clearCompleted() {
   todos = todos.filter((t) => !t.completed);
+}
+
+/** テスト用: TODO リストをリセットする */
+export function resetTodos() {
+  todos = [];
 }
