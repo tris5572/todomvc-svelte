@@ -25,6 +25,13 @@
     todos.push(todo);
   }
 
+  /** TODO アイテムのタイトルを編集する */
+  function editTodoTitle(id: number, title: string) {
+    todos = todos.map((t) =>
+      t.id === id ? { id, title, completed: t.completed } : t,
+    );
+  }
+
   /** 指定した ID の TODO アイテムを削除する */
   function deleteTodo(id: number) {
     todos = todos.filter((t) => t.id !== id);
@@ -41,7 +48,11 @@
   <div>
     <!-- #each で回した要素を直接使用すると、各アイテムが一時的な参照になって bind で更新できないためインデックスアクセスする -->
     {#each filteredTodos as _, i}
-      <Item bind:todo={filteredTodos[i]} onDelete={deleteTodo} />
+      <Item
+        bind:todo={filteredTodos[i]}
+        onDelete={deleteTodo}
+        {editTodoTitle}
+      />
     {/each}
   </div>
   <Footer
